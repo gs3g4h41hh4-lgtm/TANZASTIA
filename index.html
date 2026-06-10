@@ -13,38 +13,66 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:Tahoma,sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
 background:#0f1115;
-color:#fff;
+color:white;
+}
+
+nav{
+position:sticky;
+top:0;
+background:#171a21;
+padding:15px 30px;
+display:flex;
+justify-content:center;
+gap:25px;
+border-bottom:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(10px);
+z-index:1000;
+}
+
+nav a{
+color:#ddd;
+text-decoration:none;
+font-size:15px;
+transition:.3s;
+}
+
+nav a:hover{
+color:#8b0000;
 }
 
 header{
-padding:80px 20px;
+padding:100px 20px;
 text-align:center;
 }
 
 .logo{
-font-size:55px;
-font-weight:700;
-}
-
-.logo span{
-color:#e53935;
+font-size:70px;
+font-weight:800;
+letter-spacing:3px;
+color:#8b0000;
 }
 
 .desc{
 margin-top:15px;
-color:#b0b0b0;
+color:#a8a8a8;
 font-size:18px;
+}
+
+.version{
+margin-top:15px;
+color:#888;
 }
 
 .download{
 display:inline-block;
-margin-top:30px;
-padding:14px 30px;
-background:#e53935;
+margin-top:35px;
+padding:15px 35px;
+background:#8b0000;
 color:white;
 text-decoration:none;
 border-radius:12px;
@@ -53,12 +81,12 @@ transition:.3s;
 }
 
 .download:hover{
-box-shadow:0 0 20px rgba(229,57,53,.4);
+box-shadow:0 0 20px rgba(139,0,0,.45);
 transform:translateY(-2px);
 }
 
 .container{
-max-width:1000px;
+max-width:1100px;
 margin:auto;
 padding:20px;
 }
@@ -68,11 +96,12 @@ background:#171a21;
 padding:25px;
 border-radius:18px;
 margin-bottom:20px;
-border:1px solid rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.06);
 }
 
 .card h2{
 margin-bottom:15px;
+color:#fff;
 }
 
 .features{
@@ -82,31 +111,63 @@ gap:15px;
 }
 
 .feature{
-background:#1d212b;
+background:#1f232c;
+padding:18px;
+border-radius:12px;
+}
+
+.code-box{
+background:#0c0e13;
+padding:20px;
+border-radius:12px;
+overflow:auto;
+font-family:monospace;
+line-height:2;
+color:#d6d6d6;
+}
+
+.version-box{
+background:#1f232c;
 padding:15px;
 border-radius:12px;
+margin-bottom:10px;
 }
 
 footer{
 text-align:center;
 padding:30px;
-color:#888;
+color:#777;
+margin-top:30px;
 }
 
 </style>
 </head>
 <body>
 
-<header>
-<h1 class="logo">تانز<span>ستيا</span></h1>
+<nav>
+<a href="#home">الرئيسية</a>
+<a href="#features">المميزات</a>
+<a href="#connect">طريقة الربط</a>
+<a href="#versions">الإصدارات</a>
+<a href="#notes">ملاحظات المطور</a>
+</nav>
+
+<header id="home">
+
+<h1 class="logo">TANZASTIA</h1>
 
 <p class="desc">
-بوت واتساب متطور وسريع مع نظام إضافات وحماية متقدمة
+بوت واتساب متطور للحماية والإدارة والأتمتة
+</p>
+
+<p class="version">
+الإصدار الحالي : TANZASTIA V.2.0.0
 </p>
 
 <a href="#" class="download">
 تحميل البوت
 </a>
+
 </header>
 
 <div class="container">
@@ -114,52 +175,105 @@ color:#888;
 <div class="card">
 <h2>نبذة عن البوت</h2>
 <p>
-تانزستيا بوت واتساب متعدد المهام يوفر أدوات إدارة المجموعات والحماية والأوامر المتقدمة.
+تانزستيا هو بوت واتساب متعدد المهام يوفر أدوات الإدارة والحماية ونظام إضافات متطور مع تحديثات مستمرة وتحسينات دائمة.
 </p>
 </div>
 
-<div class="card">
+<div class="card" id="features">
+
 <h2>المميزات</h2>
 
 <div class="features">
 
-<div class="feature">
-سرعة واستقرار
-</div>
+<div class="feature">نظام إضافات Plugins</div>
 
-<div class="feature">
-نظام إضافات
-</div>
+<div class="feature">حماية المجموعات</div>
 
-<div class="feature">
-حماية متقدمة
-</div>
+<div class="feature">إدارة متقدمة</div>
 
-<div class="feature">
-تحديثات مستمرة
-</div>
+<div class="feature">سرعة واستقرار</div>
 
-<div class="feature">
-سهولة الاستخدام
-</div>
+<div class="feature">تحديثات مستمرة</div>
 
-<div class="feature">
-أوامر إدارة كاملة
+<div class="feature">سهولة الاستخدام</div>
+
 </div>
 
 </div>
+
+<div class="card" id="connect">
+
+<h2>طريقة الربط</h2>
+
+<div class="code-box">
+
+أوامر التيرمكس
+
+<br><br>
+
+apt update
+
+<br>
+
+apt upgrade
+
+<br>
+
+pkg install -y
+
+<br>
+
+cd /اسم_ملفك
+
+<br>
+
+node index
+
+<br><br>
+
+بعد تشغيل البوت سيظهر لك كود الربط.
+
+<br>
+
+قم بنسخ الكود ووضعه داخل واتساب لإكمال عملية الربط.
+
 </div>
 
-<div class="card">
-<h2>المطور</h2>
-<p>تانزستيا</p>
+</div>
+
+<div class="card" id="versions">
+
+<h2>الإصدارات</h2>
+
+<div class="version-box">
+TANZASTIA V.1.0.0
+</div>
+
+<div class="version-box">
+TANZASTIA V.2.0.0
+</div>
+
+<div class="version-box">
+TANZASTIA V.3.0.0 - قريباً
+</div>
+
+</div>
+
+<div class="card" id="notes">
+
+<h2>ملاحظات المطور</h2>
+
+<p>
+سيتم إضافة ملاحظات المطور قريباً...
+</p>
+
 </div>
 
 </div>
 
 <footer>
-© TANZASTIA
+© TANZASTIA - All Rights Reserved
 </footer>
 
 </body>
-</html>
+  </html>
