@@ -1,2 +1,0 @@
-# TANZASTIA
-Bos in WhatsApp 
