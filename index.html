@@ -1,390 +1,460 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TANZASTIA</title>
+<!DOCTYPE html>  
+<html lang="ar" dir="rtl">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>تانزستيا</title>  
+<style>  
 
-<style>
+*{  
+margin:0;  
+padding:0;  
+box-sizing:border-box;  
+font-family:Tahoma,sans-serif;  
+}  
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Tahoma,sans-serif;
+body{  
+background:#0f1115;  
+color:#fff;  
 scroll-behavior:smooth;
+}  
+
+/* القائمة الجانبية */
+.side-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
 }
 
-body{
-background:#0f1115;
-color:white;
+.menu-btn {
+  background: #8B0000;
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
-nav{
-position:sticky;
-top:0;
-z-index:1000;
-background:#171a21;
-padding:18px;
-display:flex;
-justify-content:center;
-gap:25px;
-border-bottom:1px solid rgba(255,255,255,.06);
+.menu-btn:hover {
+  transform: scale(1.05);
+  background: #6B0000;
 }
 
-nav a{
-color:#d0d0d0;
-text-decoration:none;
-transition:.3s;
+.menu-content {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 260px;
+  height: 100%;
+  background: #171a21;
+  border-left: 1px solid rgba(139,0,0,0.3);
+  transition: 0.3s;
+  padding-top: 80px;
+  z-index: 999;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.5);
 }
 
-nav a:hover{
-color:#8b0000;
+.menu-content.open {
+  left: 0;
 }
 
-header{
-padding:100px 20px;
+.menu-content a {
+  display: block;
+  padding: 15px 25px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: 0.2s;
+}
+
+.menu-content a:hover {
+  background: #8B0000;
+  padding-right: 35px;
+}
+
+.close-menu {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #8B0000;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 998;
+  display: none;
+}
+
+.overlay.show {
+  display: block;
+}
+
+header{  
+padding:80px 20px;  
+text-align:center;  
+}  
+
+.logo{  
+font-size:38px;  
+font-weight:700;  
+color:#8B0000;
+}  
+
+.desc{  
+margin-top:15px;  
+color:#b0b0b0;  
+font-size:18px;  
+}  
+
+.download{  
+display:inline-block;  
+margin-top:30px;  
+padding:14px 30px;  
+background:#8B0000;  
+color:white;  
+text-decoration:none;  
+border-radius:12px;  
+font-weight:bold;  
+cursor:pointer;
+animation: glow 1.5s ease-in-out infinite;
+box-shadow: 0 0 15px rgba(139,0,0,0.5);
+transition: 0.2s;
+}  
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(139,0,0,0.5); background: #8B0000; }
+  50% { box-shadow: 0 0 25px rgba(139,0,0,0.9); background: #9C1A1A; }
+  100% { box-shadow: 0 0 5px rgba(139,0,0,0.5); background: #8B0000; }
+}
+
+.download:hover{  
+transform:translateY(-2px);
+animation: none;
+background: #6B0000;
+box-shadow: 0 0 30px rgba(139,0,0,0.8);
+}  
+
+.container{  
+max-width:1000px;  
+margin:auto;  
+padding:20px;  
+}  
+
+.card{  
+background:#171a21;  
+padding:25px;  
+border-radius:18px;  
+margin-bottom:20px;  
+border:1px solid rgba(255,255,255,.05);  
+}  
+
+.card h2{  
+margin-bottom:15px;  
+color:#8B0000;
+}  
+
+.features{  
+display:grid;  
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));  
+gap:15px;  
+}  
+
+.feature{  
+background:#1d212b;  
+padding:15px;  
+border-radius:12px;  
 text-align:center;
+}  
+
+.versions {
+  display: grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
 }
 
-.logo{
-font-size:95px;
-font-weight:900;
-letter-spacing:4px;
-color:white;
+.version-card {
+  background:#1d212b;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+  border:1px solid rgba(139,0,0,0.3);
 }
 
-.desc{
-margin-top:15px;
-font-size:18px;
-color:#a5a5a5;
+.version-card .v-number {
+  font-size:18px;
+  font-weight:bold;
+  color:#8B0000;
+  margin-bottom:8px;
 }
 
-.download{
-display:inline-block;
-margin-top:30px;
-padding:15px 35px;
-background:#8b0000;
-color:white;
-text-decoration:none;
-border-radius:12px;
-font-weight:bold;
-transition:.3s;
+.version-card .v-status {
+  font-size:13px;
+  color:#888;
+  margin-top:8px;
 }
 
-.download:hover{
-box-shadow:0 0 18px rgba(139,0,0,.35);
+.note-box {
+  background: #1a120e;
+  border-right: 4px solid #8B0000;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 10px;
 }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:20px;
+.note-box p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #ccc;
 }
 
-.card{
-background:#171a21;
-padding:25px;
-border-radius:18px;
-margin-bottom:20px;
-border:1px solid rgba(255,255,255,.05);
+.warning {
+  background: #1a1a1a;
+  color: #ff8888;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 20px;
 }
 
-.card h2{
-margin-bottom:15px;
+.setup-step {
+  background: #0f1115;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  border-right: 3px solid #8B0000;
+  font-family: monospace;
+  font-size: 14px;
 }
 
-.stats{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;
-margin-top:40px;
+.setup-step .step-num {
+  color: #8B0000;
+  font-weight: bold;
+  margin-left: 10px;
 }
 
-.stat{
-background:#1f232c;
-padding:18px;
-border-radius:12px;
+.setup-step code {
+  background: #1d212b;
+  padding: 4px 8px;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 4px 0;
+  font-family: monospace;
 }
 
-.features{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;
+.developer-name {
+  color: #8B0000;
+  font-weight: bold;
 }
 
-.feature{
-background:#1f232c;
-padding:18px;
-border-radius:12px;
+footer{  
+text-align:center;  
+padding:30px;  
+color:#888;  
+}  
+
+</style>  
+</head>  
+<body>  
+
+<!-- القائمة الجانبية -->
+<div class="side-menu">
+  <div class="menu-btn" id="menuBtn">☰</div>
+</div>
+
+<div class="menu-content" id="menuContent">
+  <div class="close-menu" id="closeMenu">✕</div>
+  <a href="#home" id="homeLink">🏠 الرئيسية</a>
+  <a href="#versions" id="versionsLink">📦 الإصدارات</a>
+  <a href="#features" id="featuresLink">⚡ المميزات</a>
+  <a href="#setup" id="setupLink">🔗 طريقة الربط</a>
+  <a href="#devnotes" id="devnotesLink">📢 ملاحظات المطور</a>
+</div>
+<div class="overlay" id="overlay"></div>
+
+<header id="home">  
+<h1 class="logo">TANZASTIA</h1>  
+<p class="desc">  
+بوت واتساب متطور وسريع مع نظام إضافات وحماية متقدمة  
+</p>  
+<a class="download" id="downloadBtn">  
+⬇️ تحميل البوت  
+</a>  
+</header>  
+
+<div class="container">  
+  <!-- نبذة عن البوت -->
+  <div class="card">  
+    <h2>نبذة عن البوت</h2>  
+    <p>  
+    تانزستيا بوت واتساب متعدد المهام يوفر أدوات إدارة المجموعات والحماية والأوامر المتقدمة.  
+    </p>  
+  </div>  
+
+  <!-- الإصدارات -->
+  <div class="card" id="versions">  
+    <h2>📦 الإصدارات</h2>  
+    <div class="versions">
+      <div class="version-card">
+        <div class="v-number">TANZASTIA V.1.0.0</div>
+        <div class="v-status">الإصدار الأول</div>
+      </div>
+      <div class="version-card">
+        <div class="v-number">TANZASTIA V.2.0.0</div>
+        <div class="v-status">الإصدار الثاني</div>
+      </div>
+      <div class="version-card">
+        <div class="v-number">TANZASTIA V.3.0.0</div>
+        <div class="v-status">قريباً</div>
+      </div>
+    </div>
+  </div>  
+
+  <!-- المميزات -->
+  <div class="card" id="features">  
+    <h2>⚡ المميزات</h2>  
+    <div class="features">  
+      <div class="feature">سرعة واستقرار</div>  
+      <div class="feature">نظام إضافات</div>  
+      <div class="feature">حماية متقدمة</div>  
+      <div class="feature">تحديثات مستمرة</div>  
+      <div class="feature">سهولة الاستخدام</div>  
+      <div class="feature">أوامر إدارة كاملة</div>  
+    </div>  
+  </div>  
+
+  <!-- طريقة الربط (أوامر التيرمكس) -->
+  <div class="card" id="setup">  
+    <h2>🔗 طريقة الربط</h2>  
+    <div class="setup-step">
+      <span class="step-num">➊</span> <code>apt update</code>
+    </div>
+    <div class="setup-step">
+      <span class="step-num">➋</span> <code>apt upgrade</code>
+    </div>
+    <div class="setup-step">
+      <span class="step-num">➌</span> <code>pkg install -y</code>
+    </div>
+    <div class="setup-step">
+      <span class="step-num">➍</span> <code>cd /اسم_ملفك</code>
+    </div>
+    <div class="setup-step">
+      <span class="step-num">➎</span> <code>node index</code>
+    </div>
+    <div class="setup-step" style="border-right-color: #ff8800;">
+      <span class="step-num">⭐</span> بعد تشغيل البوت انت اختار لك كود وحطه وبعدين اشبكه بالواتس
+    </div>
+  </div>  
+
+  <!-- ملاحظات المطور -->
+  <div class="card" id="devnotes">  
+    <h2>📢 ملاحظات المطور</h2>  
+    <div class="note-box">
+      <p>❶ البوتين بالإصدار الأول والثاني على هيكلية انستازيا، والإصدار الثالث هو الوحيد اللي على هيكليته الخاصة.</p>
+      <p>❷ البوت ما يعتمد على النت بشكل كبير مثل انستازيا، بل يعتمد بنسبة 20% على سرعة الجهاز و 80% على سرعة النت.</p>
+      <p>❸ النسخة VIP رح تنزل بس رح تكون مدفوعة.</p>
+    </div>
+  </div>  
+
+  <div class="card">  
+    <h2>المطور</h2>  
+    <p><span class="developer-name">تانزستيا</span></p>
+    <div class="warning">
+      ⚠️ الروابط اللي من خارج الموقع هاظ مش روابط تانزستيا
+    </div>
+  </div>  
+</div>  
+
+<footer>  
+© TANZASTIA  
+</footer>  
+
+<script>
+// فتح وإغلاق القائمة الجانبية
+const menuBtn = document.getElementById('menuBtn');
+const menuContent = document.getElementById('menuContent');
+const overlay = document.getElementById('overlay');
+const closeMenu = document.getElementById('closeMenu');
+
+function openMenu() {
+  menuContent.classList.add('open');
+  overlay.classList.add('show');
 }
 
-.version-box{
-background:#1f232c;
-padding:18px;
-border-radius:12px;
-margin-bottom:10px;
+function closeMenuFunc() {
+  menuContent.classList.remove('open');
+  overlay.classList.remove('show');
 }
 
-.version-box a{
-color:white;
-text-decoration:none;
+menuBtn.addEventListener('click', openMenu);
+closeMenu.addEventListener('click', closeMenuFunc);
+overlay.addEventListener('click', closeMenuFunc);
+
+// إغلاق القائمة بعد الضغط على رابط
+const allLinks = document.querySelectorAll('.menu-content a');
+allLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    closeMenuFunc();
+  });
+});
+
+// وظيفة عرض رسالة
+function showMessage(msg) {
+  const toast = document.createElement('div');
+  toast.textContent = msg;
+  toast.style.position = 'fixed';
+  toast.style.bottom = '30px';
+  toast.style.left = '50%';
+  toast.style.transform = 'translateX(-50%)';
+  toast.style.backgroundColor = '#1e222e';
+  toast.style.color = '#fff';
+  toast.style.padding = '12px 24px';
+  toast.style.borderRadius = '40px';
+  toast.style.fontSize = '14px';
+  toast.style.border = '1px solid #8B0000';
+  toast.style.zIndex = '10000';
+  toast.style.direction = 'rtl';
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transition = '0.3s';
+    setTimeout(() => toast.remove(), 300);
+  }, 2500);
 }
 
-.code{
-background:#0b0d12;
-padding:20px;
-border-radius:12px;
-direction:ltr;
-line-height:2;
-overflow:auto;
-}
-
-footer{
-text-align:center;
-padding:30px;
-color:#777;
-}
-
-ul{
-padding-right:20px;
-line-height:2;
-}
-
-</style>
-</head>
-
-<body>
-
-<nav>
-<a href="#home">الرئيسية</a>
-<a href="#features">المميزات</a>
-<a href="#connect">طريقة الربط</a>
-<a href="#versions">الإصدارات</a>
-<a href="#rating">التقييم</a>
-<a href="#notes">ملاحظات المطور</a>
-</nav>
-
-<header id="home">
-
-<h1 class="logo">TANZASTIA</h1>
-
-<p class="desc">
-بوت واتساب متطور للحماية والإدارة والأتمتة
-</p>
-
-<a href="#" class="download">
-تحميل البوت
-</a>
-
-<div class="stats">
-
-<div class="stat">
-عدد التحميلات
-<br><br>
-قريباً
-</div>
-
-<div class="stat">
-عدد الإصدارات
-<br><br>
-3
-</div>
-
-<div class="stat">
-حالة المشروع
-<br><br>
-نشط
-</div>
-
-</div>
-
-</header>
-
-<div class="container">
-
-<div class="card">
-
-<h2>نبذة عن البوت</h2>
-
-<p>
-تانزستيا مشروع بوت واتساب متطور يركز على الأداء والاستقرار والحماية مع تطوير مستمر للإصدارات القادمة.
-</p>
-
-</div>
-
-<div class="card" id="features">
-
-<h2>المميزات</h2>
-
-<div class="features">
-
-<div class="feature">نظام إضافات Plugins</div>
-
-<div class="feature">إدارة المجموعات</div>
-
-<div class="feature">حماية متقدمة</div>
-
-<div class="feature">سرعة واستقرار</div>
-
-<div class="feature">تحديثات مستمرة</div>
-
-<div class="feature">سهولة الاستخدام</div>
-
-</div>
-
-</div>
-<div class="card" id="connect">
-
-<h2>طريقة الربط</h2>
-
-<div class="code">
-
-apt update
-
-<br>
-
-apt upgrade
-
-<br>
-
-pkg install -y
-
-<br>
-
-cd /اسم_ملفك
-
-<br>
-
-node index
-
-</div>
-
-<br>
-
-<p>
-بعد تشغيل البوت سيظهر لك كود الربط، قم بإدخاله داخل واتساب لإكمال عملية الربط.
-</p>
-
-</div>
-
-<div class="card" id="versions">
-
-<h2>الإصدارات</h2>
-
-<div class="version-box">
-<a href="#">
-TANZASTIA V.1.0.0
-</a>
-</div>
-
-<div class="version-box">
-<a href="#">
-TANZASTIA V.2.0.0
-</a>
-</div>
-
-<div class="version-box">
-TANZASTIA V.3.0.0 - قريباً
-</div>
-
-</div>
-
-<div class="card" id="rating">
-
-<h2>التقييم</h2>
-
-<p>
-إذا أعجبك TANZASTIA لا تنسَ تقييم المشروع ومشاركة رأيك للمساعدة في تطوير الإصدارات القادمة.
-</p>
-
-<br>
-
-<div class="features">
-
-<div class="feature">
-⭐⭐⭐⭐⭐
-<br><br>
-ممتاز
-</div>
-
-<div class="feature">
-⭐⭐⭐⭐
-<br><br>
-جيد جداً
-</div>
-
-<div class="feature">
-⭐⭐⭐
-<br><br>
-جيد
-</div>
-
-<div class="feature">
-⭐⭐
-<br><br>
-مقبول
-</div>
-
-<div class="feature">
-⭐
-<br><br>
-يحتاج تحسين
-</div>
-
-</div>
-
-</div>
-
-<div class="card" id="notes">
-
-<h2>ملاحظات المطور</h2>
-
-<ul>
-
-<li>
-البوتان في الإصدار الأول والثاني مبنيان على هيكلية إنستازيا.
-</li>
-
-<li>
-الإصدار الثالث هو أول إصدار يعتمد على هيكلية TANZASTIA الخاصة.
-</li>
-
-<li>
-البوت لا يعتمد على الإنترنت بشكل كامل مثل إنستازيا.
-</li>
-
-<li>
-يعتمد تقريباً بنسبة 20٪ على سرعة الجهاز و80٪ على سرعة الإنترنت.
-</li>
-
-<li>
-نسخة VIP قيد التطوير وستكون مدفوعة.
-</li>
-
-<li>
-أي روابط خارج هذا الموقع لا تعتبر روابط رسمية لتانزستيا.
-</li>
-
-</ul>
-
-</div>
-
-<div class="card">
-
-<h2>المطور</h2>
-
-<p>
-TANZASTIA
-</p>
-
-</div>
-
-</div>
-
-<footer>
-© TANZASTIA - All Rights Reserved
-</footer>
-
-</body>
+// زر التحميل
+const downloadBtn = document.getElementById('downloadBtn');
+downloadBtn.addEventListener('click', () => {
+  const blob = new Blob(
+    ['# تانزستيا بوت - الإصدار الثالث\n# هذا الإصدار يعمل على هيكليته الخاصة\n# تاريخ الإصدار: 2025\n# متطلبات التشغيل: Node.js 18+'],
+    { type: 'text/plain' }
+  );
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'TANZASTIA_BOT_v3.0.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showMessage('✓ بدء تحميل الإصدار الثالث من تانزستيا');
+});
+</script>
+
+</body>  
   </html>
